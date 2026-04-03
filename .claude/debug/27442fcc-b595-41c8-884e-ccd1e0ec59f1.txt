@@ -1,0 +1,66 @@
+2026-03-27T19:50:53.881Z [DEBUG] [Query.streamInput] Starting to process input stream
+2026-03-27T19:50:53.883Z [DEBUG] [Query.streamInput] Processing message 1: user
+2026-03-27T19:51:13.566Z [DEBUG] [Query.streamInput] Processing message 2: user
+2026-03-27T19:51:18.217Z [DEBUG] [Query.streamInput] Processing message 3: user
+2026-03-27T19:51:18.821Z [DEBUG] [Query.streamInput] Processing message 4: user
+2026-03-27T19:51:24.476Z [DEBUG] [Query.streamInput] Processing message 5: user
+2026-03-27T19:51:26.189Z [DEBUG] [Query.streamInput] Processing message 6: user
+2026-03-27T19:51:30.176Z [DEBUG] [Query.streamInput] Processing message 7: user
+2026-03-27T19:51:30.441Z [DEBUG] [Query.streamInput] Processing message 8: user
+2026-03-27T19:51:33.912Z [DEBUG] [Query.streamInput] Processing message 9: user
+2026-03-27T19:51:33.940Z [DEBUG] [Query.streamInput] Processing message 10: user
+2026-03-27T19:51:42.438Z [DEBUG] [Query.streamInput] Processing message 11: user
+2026-03-27T19:51:42.531Z [DEBUG] [Query.streamInput] Processing message 12: user
+2026-03-27T19:51:47.828Z [DEBUG] [Query.streamInput] Processing message 13: user
+2026-03-27T19:51:47.859Z [DEBUG] [Query.streamInput] Processing message 14: user
+2026-03-27T19:51:50.679Z [DEBUG] [Query.streamInput] Processing message 15: user
+2026-03-27T19:51:50.964Z [DEBUG] [Query.streamInput] Processing message 16: user
+2026-03-27T19:51:55.915Z [DEBUG] [Query.streamInput] Processing message 17: user
+2026-03-27T19:51:56.934Z [DEBUG] [Query.streamInput] Processing message 18: user
+2026-03-27T19:52:02.140Z [DEBUG] [Query.streamInput] Processing message 19: user
+2026-03-27T19:52:02.664Z [DEBUG] [Query.streamInput] Processing message 20: user
+2026-03-27T19:52:06.759Z [DEBUG] [Query.streamInput] Processing message 21: user
+2026-03-27T19:52:06.852Z [DEBUG] [Query.streamInput] Processing message 22: user
+2026-03-27T19:52:11.953Z [DEBUG] [Query.streamInput] Processing message 23: user
+2026-03-27T19:52:12.027Z [DEBUG] [Query.streamInput] Processing message 24: user
+2026-03-27T19:52:16.006Z [DEBUG] [Query.streamInput] Processing message 25: user
+2026-03-27T19:52:16.330Z [DEBUG] [Query.streamInput] Processing message 26: user
+2026-03-27T19:52:29.046Z [DEBUG] [Query.streamInput] Processing message 27: user
+2026-03-27T19:52:36.361Z [DEBUG] [Query.streamInput] Processing message 28: user
+2026-03-27T19:54:39.304Z [DEBUG] [Query.streamInput] Processing message 29: user
+2026-03-27T19:54:45.076Z [DEBUG] [Query.streamInput] Processing message 30: user
+2026-03-27T19:55:17.766Z [DEBUG] [Query.streamInput] Processing message 31: user
+2026-03-27T19:55:22.387Z [DEBUG] [Query.streamInput] Processing message 32: user
+2026-03-27T19:55:34.665Z [DEBUG] [Query.streamInput] Processing message 33: user
+2026-03-27T19:55:53.882Z [DEBUG] [Query.streamInput] Processing message 34: user
+2026-03-27T19:56:06.561Z [DEBUG] [Query.streamInput] Processing message 35: user
+2026-03-27T19:56:15.820Z [DEBUG] [Query.streamInput] Processing message 36: user
+2026-03-27T19:56:21.753Z [DEBUG] [Query.streamInput] Processing message 37: user
+2026-03-27T19:56:26.639Z [DEBUG] [Query.streamInput] Processing message 38: user
+2026-03-27T19:56:48.452Z [DEBUG] [Query.streamInput] Processing message 39: user
+2026-03-27T19:57:05.858Z [DEBUG] [Query.streamInput] Processing message 40: user
+2026-03-27T19:57:13.556Z [DEBUG] [Query.streamInput] Processing message 41: user
+2026-03-27T19:57:19.776Z [DEBUG] [Query.streamInput] Processing message 42: user
+2026-03-27T19:57:27.142Z [DEBUG] [Query.streamInput] Processing message 43: user
+2026-03-27T19:57:28.486Z [DEBUG] [Query.streamInput] Processing message 44: user
+2026-03-27T19:57:30.603Z [DEBUG] [Query.streamInput] Processing message 45: user
+2026-03-27T19:57:32.956Z [DEBUG] [Query.streamInput] Processing message 46: user
+2026-03-27T19:57:34.763Z [DEBUG] [Query.streamInput] Processing message 47: user
+2026-03-27T19:57:37.028Z [DEBUG] [Query.streamInput] Processing message 48: user
+2026-03-27T19:57:38.862Z [DEBUG] [Query.streamInput] Processing message 49: user
+2026-03-27T19:58:29.094Z [DEBUG] [Query.streamInput] Processing message 50: user
+2026-03-27T19:59:18.338Z [DEBUG] [Query.streamInput] Processing message 51: user
+2026-03-27T20:00:23.719Z [DEBUG] [Query.streamInput] Processing message 52: user
+2026-03-27T20:01:19.686Z [DEBUG] [Query.streamInput] Processing message 53: user
+2026-03-27T20:01:37.953Z [DEBUG] [Query.streamInput] Processing message 54: user
+2026-03-27T20:02:29.089Z [DEBUG] [Query.streamInput] Processing message 55: user
+2026-03-27T20:08:29.090Z [DEBUG] [Query.streamInput] Finished processing 55 messages from input stream
+2026-03-27T20:08:29.090Z [DEBUG] [Query] Calling transport.endInput() to close stdin to CLI process
+2026-03-27T20:09:41.470Z [DEBUG] [Query.streamInput] Starting to process input stream
+2026-03-27T20:09:41.472Z [DEBUG] [Query.streamInput] Processing message 1: user
+2026-03-27T20:09:41.475Z [DEBUG] [Query.streamInput] Processing message 2: user
+2026-03-27T20:09:42.846Z [DEBUG] [Query.streamInput] Processing message 3: user
+2026-03-27T20:09:44.233Z [DEBUG] [Query.streamInput] Processing message 4: user
+2026-03-27T20:10:36.345Z [DEBUG] [Query.streamInput] Processing message 5: user
+2026-03-27T20:13:36.373Z [DEBUG] [Query.streamInput] Finished processing 5 messages from input stream
+2026-03-27T20:13:36.373Z [DEBUG] [Query] Calling transport.endInput() to close stdin to CLI process

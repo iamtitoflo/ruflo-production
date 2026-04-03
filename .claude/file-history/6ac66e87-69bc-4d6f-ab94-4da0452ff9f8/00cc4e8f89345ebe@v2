@@ -1,0 +1,81 @@
+# System & OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/settings.json
+node_modules/
+.env
+.env.local
+.env.*.local
+
+# Sensitive & Secrets
+*.key
+*.pem
+.ssh/
+credentials.json
+secrets.yaml
+.env*
+!.env.example
+
+# Build & Artifacts
+dist/
+build/
+*.o
+*.so
+*.dylib
+.next/
+out/
+.nuxt/
+
+# Logs & Temp
+*.log
+logs/
+*.pid
+.tmp/
+tmp/
+temp/
+
+# Claude Code & Ruflo (COMMITTED for portability)
+# Keep these in git (configuration, agents, memory):
+!.claude/
+!.claude-flow/
+!.agents/
+
+# Exclude temp files within .claude/:
+.claude/node_modules/
+.claude/.cache/
+.claude/**/*.log
+.claude/**/*.tmp
+.claude/daemon.pid
+.claude-flow/cache/
+.claude-flow/logs/
+.agents/node_modules/
+.agents/cache/
+
+# Memory indices (export before commit):
+.claude/memory/*.index
+.claude/memory/*.ldb
+!.claude/memory/MEMORY.md
+
+# Dependencies (lock files for reproducibility)
+package-lock.json
+yarn.lock
+poetry.lock
+
+# IDE & Runtime
+.vscode/
+!.vscode/settings.example.json
+*.code-workspace
+.Claude.session
+.token-cache/
+.state/
+
+# Portable repo (git clone recovery):
+# ✓ setup.sh
+# ✓ CLAUDE.md
+# ✓ .claude/agents/*.yaml
+# ✓ .claude/hooks.json
+# ✓ .claude/settings.json

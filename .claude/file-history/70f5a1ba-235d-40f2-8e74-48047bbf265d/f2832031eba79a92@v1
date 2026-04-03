@@ -1,0 +1,57 @@
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { createHmac } from "crypto";
+import { kv } from "@vercel/kv";
+
+const MAINTENANCE_KEY = "site:maintenance";
+
+function verifyToken(token: string, secret: string): boolean {
+  try {
+    const [payload, sig] = token.split(".");
+    if (!payload || !sig) return false;
+    const expected = createHmac("sha256", secret).update(payload).digest("base64url");
+    if (sig !== expected) return false;
+    const { exp } = JSON.parse(Buffer.from(payload, "base64url").toString());
+    return typeof exp === "number" && exp > Date.now();
+  } catch {
+    return false;
+  }
+}
+
+function getTokenFromCookies(cookieHeader: string): string | null {
+  for (const part of cookieHeader.split(";")) {
+    const [k, v] = part.trim().split("=");
+    if (k === "admin_token" && v) return v;
+  }
+  return null;
+}
+
+function requireAuth(req: VercelRequest, res: VercelResponse): boolean {
+  const JWT_SECRET = process.env.ADMIN_JWT_SECRET;
+  if (!JWT_SECRET) { res.status(500).json({ error: "Not configured" }); return false; }
+  const token = getTokenFromCookies(req.headers.cookie ?? "");
+  if (!token || !verifyToken(token, JWT_SECRET)) {
+    res.status(401).json({ error: "Unauthorized" });
+    return false;
+  }
+  return true;
+}
+
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  if (!requireAuth(req, res)) return;
+
+  if (req.method === "GET") {
+    const maintenance = (await kv.get<boolean>(MAINTENANCE_KEY)) ?? false;
+    return res.status(200).json({ maintenance });
+  }
+
+  if (req.method === "POST") {
+    const { enabled } = req.body ?? {};
+    if (typeof enabled !== "boolean") {
+      return res.status(400).json({ error: "enabled must be boolean" });
+    }
+    await kv.set(MAINTENANCE_KEY, enabled);
+    return res.status(200).json({ maintenance: enabled });
+  }
+
+  return res.status(405).end();
+}

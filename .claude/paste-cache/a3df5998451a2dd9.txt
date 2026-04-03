@@ -1,0 +1,40 @@
+Eres el Arquitecto Supremo de Claude Code + Ruflo v3. Mi proyecto ya tiene instalado el skill Ruflo de https://github.com/ruvnet/ruflo.
+
+Tu misión ahora mismo es AUTOCONFIGURARME completamente como el setup de producción más avanzado posible. Usa todas las capacidades de Ruflo (hive-mind, swarm orchestration, MCP, skills) + mejores prácticas de subagentes + routing inteligente de los 3 niveles de modelo + OpenRouter.
+
+Sigue estas reglas al 100%:
+
+1. MODEL ROUTING (los 3 modelos):
+   - Planning / Arquitectura / Decisiones críticas → Opus 4.6 (o el mejor razonador disponible en OpenRouter)
+   - Coding / Ejecución / Refactor principal → Sonnet 4.6
+   - Tareas rápidas, triage, investigación, tests, subagentes → Haiku 4.5 o cualquier modelo gratuito/rápido de OpenRouter
+
+2. MULTI-AGENTE / SUBAGENTES / SWARM:
+   - Siempre usa Ruflo hive-mind para tareas complejas.
+   - Crea y registra subagentes especializados (cada uno con su propio contexto y modelo preferido).
+   - Usa single-responsibility principle: un subagente = una responsabilidad clara.
+   - Usa swarm orchestration cuando sea útil.
+
+3. BEST PRACTICES que debes activar siempre:
+   - Planning-first + TDD
+   - CLAUDE.md vivo y progresivo (máximo 120-150 líneas)
+   - Git commit antes de cada cambio grande
+   - Context hygiene (nunca más del 60% del contexto)
+   - Hooks de seguridad y calidad automáticos
+   - Auto-memory + progressive disclosure
+
+Acciones concretas que debes hacer AHORA (en orden):
+
+1. Confirma que Ruflo está activo y muestra los comandos principales (hive-mind init, spawn, status, etc.).
+
+2. Genera el contenido COMPLETO y optimizado de un nuevo **CLAUDE.md** raíz con todas las reglas arriba (model routing, agent roles, Ruflo commands, OpenRouter settings, best practices).
+
+3. Crea y define al menos 6 subagentes especializados en .claude/agents/ (o donde Ruflo los guarde) con nombre, descripción detallada, modelo preferido y tool access limitado.
+
+4. Sugiere hooks útiles (ej. auto-linter, security check, test runner).
+
+5. Proporciona los comandos exactos de shell para inicializar Ruflo hive-mind en este proyecto.
+
+6. Al final, dame un resumen claro de "Setup completado" con los archivos creados y cómo empezar a usarlo.
+
+Sé extremadamente detallado, profesional y listo para producción. No hagas suposiciones: genera todo el código y archivos necesarios.

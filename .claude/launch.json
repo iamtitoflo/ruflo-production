@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Ebook Preview (Python HTTP Server)",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "C:/Users/flori/OneDrive/Desktop/booklet millionaire"],
+      "port": 8080
+    }
+  ]
+}

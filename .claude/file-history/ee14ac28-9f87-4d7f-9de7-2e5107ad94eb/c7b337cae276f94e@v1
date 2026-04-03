@@ -1,0 +1,708 @@
+# ═══════════════════════════════════════════════════════════════
+# 🗡️  SWISS KNIFE — AI PROMPT DECK
+# Florian Muntean · @techbyflo
+# Last updated: 2026-03-30
+#
+# HOW TO USE:
+#   · Type any trigger in any app and it expands automatically
+#   · Alt+Space → search bar to find triggers without memorizing
+#   · Replace ALL [PLACEHOLDERS] before sending to AI
+#   · Best used with: Perplexity, ChatGPT, Claude
+#
+# TRIGGER INDEX:
+#   🔬 Research      :research · :research-market · :research-person · :verify · :deep-research
+#   🧱 Understanding :first-principles · :start-zero · :learn-sticky
+#   🏗️  Side Business :validate · :mvp · :side-schedule · :legal-check · :pricing
+#   🐍 Python        :py-explain · :py-review · :py-build · :py-debug · :py-automate · :py-concept
+#   🖥️  Sysadmin      :incident · :security-audit · :runbook · :zabbix · :proxmox · :network-debug · :explain-tech
+#   🎯 Thinking      :decide · :brainstorm · :challenge · :reframe · :stuck
+#   💼 Business      :bizidea · :competitor · :gtm · :email-cold · :trends
+#   🧠 Learning      :learn · :summarize · :rabbit-hole · :inspire
+#   🎬 Entertainment :watchnext · :analyze-film
+#   💪 Lifestyle     :workout · :nutrition · :recover · :trip · :weekend · :plan-week
+# ═══════════════════════════════════════════════════════════════
+
+matches:
+
+
+  # ─────────────────────────────────────────
+  # 🔬 RESEARCH
+  # ─────────────────────────────────────────
+
+  - trigger: ":research"
+    replace: |
+      Topic I want to research deeply: [TOPIC]
+
+      Structure a complete research brief for me:
+      1. Core question I'm really trying to answer
+      2. Key subtopics to investigate (with priority order)
+      3. Best primary sources (papers, reports, databases)
+      4. Common misconceptions to avoid
+      5. Experts/thought leaders worth following
+      6. Open questions that even experts disagree on
+      7. What I should believe by default vs. what needs verification
+
+      Be exhaustive. I want to understand this at an expert level.
+
+  - trigger: ":research-market"
+    replace: |
+      Market to research: [MARKET/INDUSTRY]
+
+      Give me a structured market analysis:
+      - Market size (TAM/SAM/SOM) and growth rate
+      - Top 5 players and their market share
+      - Key customer segments and their specific pain points
+      - Main distribution channels
+      - Regulatory or technical barriers to entry
+      - Where money is flowing (VCs, acquisitions, trends)
+      - Underserved niches with real potential
+
+      Cite specific numbers where possible. Flag where data is uncertain.
+
+  - trigger: ":research-person"
+    replace: |
+      Person to research: [NAME]
+      Context: [WHY I'M RESEARCHING THEM — investor / potential partner / competitor / etc]
+
+      Give me:
+      - Career trajectory and key milestones
+      - Their core beliefs and decision-making patterns
+      - Public failures and what they learned
+      - Best interviews, talks, or writings to consume
+      - How they think about [RELEVANT TOPIC]
+      - What they value most (based on their actions, not words)
+
+  - trigger: ":verify"
+    replace: |
+      Claim I want to verify: [CLAIM]
+      Source it came from: [SOURCE]
+
+      Help me evaluate this claim:
+      - Is there strong evidence for or against it?
+      - What do contrarian credible sources say?
+      - What's the confidence level I should assign (high/medium/low)?
+      - What would I need to find to fully confirm or debunk this?
+
+  - trigger: ":deep-research"
+    replace: |
+      Do deep research on trends on topic: [TOPIC]
+
+      Step 1 — Research
+      Search broadly across: industry reports, academic sources, news, forums,
+      investor activity, and expert opinion. Collect at least 10 distinct trends.
+      For each trend note: evidence strength, recency, and source type.
+
+      Step 2 — Cross-reference & filter
+      Analyze all trends found. Identify which ones:
+      - Appear across multiple independent sources
+      - Have growing momentum (not peaking or declining)
+      - Have the highest impact potential for [TARGET CONTEXT: business / tech / market]
+      Rank them and select the top 3 with clear justification for why the others were cut.
+
+      Step 3 — One-page memo
+      Draft a concise executive memo with this structure:
+
+      SUBJECT: Top 3 Emerging Trends in [TOPIC]
+      DATE: {{mydate}}
+
+      OVERVIEW (2-3 sentences on why this topic matters now)
+
+      TREND 1: [NAME]
+      - What it is
+      - Evidence & sources
+      - Why it matters & opportunity/risk
+
+      TREND 2: [NAME]
+      - What it is
+      - Evidence & sources
+      - Why it matters & opportunity/risk
+
+      TREND 3: [NAME]
+      - What it is
+      - Evidence & sources
+      - Why it matters & opportunity/risk
+
+      BOTTOM LINE (1-2 sentences: what should someone do with this information)
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
+
+
+  # ─────────────────────────────────────────
+  # 🧱 UNDERSTANDING FROM SCRATCH
+  # ─────────────────────────────────────────
+
+  - trigger: ":first-principles"
+    replace: |
+      I don't fully understand: [CONCEPT / PROBLEM / SYSTEM]
+      My current understanding: [WHAT I THINK I KNOW, OR "NONE"]
+
+      Break this down to absolute fundamentals using first principles thinking:
+
+      LAYER 1 — Core question
+      What is the single most fundamental question this concept answers?
+      Strip away all assumptions. What is this really about at its core?
+
+      LAYER 2 — Building blocks
+      What are the 3-5 foundational pieces I must understand before anything else?
+      Explain each one independently. No jargon. If you use a technical term, define it immediately.
+
+      LAYER 3 — How the pieces connect
+      Now show me how those building blocks interact to create the full concept.
+      Use a simple diagram in text (ASCII or structured list) if helpful.
+
+      LAYER 4 — Where people get confused
+      What is the #1 misconception beginners have about this?
+      Why does it feel confusing and what's the mental shift needed?
+
+      LAYER 5 — Concrete grounding
+      Give me one real-world example I can touch, see, or experience.
+      Something from everyday life or from IT/sysadmin/tech that makes it click.
+
+      End with: one question I should be able to answer if I've truly understood this.
+
+  - trigger: ":start-zero"
+    replace: |
+      I want to start: [SKILL / PROJECT / TOPIC / TOOL]
+      My current knowledge: ZERO (or close to it)
+      My goal: [WHAT I WANT TO BE ABLE TO DO — be specific]
+      Time I can invest: [X hours/week]
+
+      I need a complete "from zero" starter guide:
+
+      MINDSET FIRST
+      What is the right mental model to approach this?
+      What should I expect in the first 2 weeks (frustrations, progress, milestones)?
+
+      THE MINIMUM VIABLE KNOWLEDGE
+      What are the absolute minimum 5 things I need to understand to get started?
+      Not everything — just what unlocks the first real progress.
+
+      DAY 1 ACTION PLAN
+      What do I do in the first 60 minutes? Be extremely specific.
+      Not "read the docs" — tell me exactly what to open, what to type, what to produce.
+
+      WEEK 1 ROADMAP
+      Day-by-day breakdown. Small wins that build momentum.
+      Each day: 1 concept + 1 hands-on task + 1 thing to produce/test.
+
+      COMMON BEGINNER TRAPS
+      Top 3 mistakes that waste time at the start.
+      What to ignore completely for now (things that feel important but aren't yet).
+
+      FIRST MILESTONE
+      What does "I'm no longer a complete beginner" look like?
+      Give me a concrete test or project that proves I've crossed that line.
+
+  - trigger: ":learn-sticky"
+    replace: |
+      I want to understand and remember: [CONCEPT / TOPIC / SKILL]
+      My background: sysadmin, know Linux/networking/Python basics, visual thinker
+      Why I keep forgetting it: [IF YOU KNOW — "it's too abstract" / "too many terms" / etc]
+
+      Make this stick in my long-term memory using these techniques:
+
+      THE ANALOGY
+      Find the best real-world analogy for this concept.
+      It must come from: everyday life, cooking, architecture, sports, or infrastructure/IT.
+      Explain the analogy fully, then map each part explicitly:
+      "[Part A] in the analogy = [Part A] in the concept because..."
+
+      THE VISUAL MENTAL MODEL
+      Describe a vivid mental image or scene I can picture in my head.
+      Something I can "replay" when I need to recall this concept.
+      Make it slightly absurd or exaggerated — it sticks better.
+
+      THE MNEMONIC
+      Create an acronym, rhyme, or memorable phrase that encodes the key parts.
+      If it's a process: give me the first letters of each step as a word.
+      If it's a definition: give me a one-line phrase that sounds like the concept.
+
+      THE STORY
+      Turn this concept into a 5-sentence mini story with characters.
+      The characters represent the components. The plot represents how they interact.
+      Make it slightly dramatic or funny.
+
+      THE QUICK TEST
+      Give me 3 questions I can ask myself tomorrow to check if it stuck.
+      One recall question, one application question, one "explain it to someone else" question.
+
+
+  # ─────────────────────────────────────────
+  # 🏗️ BUILDING A COMPANY WHILE EMPLOYED
+  # ─────────────────────────────────────────
+
+  - trigger: ":validate"
+    replace: |
+      Business idea: [IDEA]
+      Target customer: [WHO]
+      Assumed problem: [PROBLEM YOU THINK THEY HAVE]
+
+      Design a lean validation plan for this week:
+      - 1 landing page hypothesis to test
+      - 5 questions to ask potential customers (and how to find them)
+      - What a "green light" signal looks like vs. a "pivot" signal
+      - How to validate willingness to pay without building anything
+      - Time required: assume I have max 2 hours/day outside my job
+
+  - trigger: ":mvp"
+    replace: |
+      Validated idea: [IDEA]
+      Core value proposition: [WHAT IT DOES FOR THE USER]
+      My technical skills: Python, Bash, Linux sysadmin, some web
+
+      Design the smallest possible MVP:
+      - The single feature that proves the core value
+      - Tech stack recommendation (fast to build, easy to iterate)
+      - What to cut ruthlessly from v1
+      - How to get first 10 paying users
+      - Milestones for weeks 1, 2, 4
+
+  - trigger: ":side-schedule"
+    replace: |
+      My job hours: [e.g. 9-6]
+      Energy pattern: [morning person / evening person]
+      Hours per week for side project: [X]
+      Current project stage: [IDEA / VALIDATING / BUILDING / LAUNCHING]
+
+      Build me a realistic weekly schedule that protects my job performance
+      while making consistent progress on the side project.
+      Include: deep work blocks, admin tasks, learning slots, and recovery.
+      Be brutally honest about what's achievable.
+
+  - trigger: ":legal-check"
+    replace: |
+      I'm employed at a company in the Netherlands and want to start a side business.
+      My side project idea: [IDEA]
+
+      What do I need to know about:
+      - Dutch employment law on side businesses (nevenactiviteiten)
+      - Conflict of interest risks
+      - IP ownership — what belongs to my employer vs. me
+      - KVK registration basics for a ZZP/BV
+      - Tax implications of earning side income in NL
+
+      Flag what I should verify with a lawyer vs. what's standard.
+
+  - trigger: ":pricing"
+    replace: |
+      Product/service: [DESCRIPTION]
+      Target customer: [WHO]
+      Competitors and their pricing: [IF KNOWN]
+
+      Help me set pricing strategy:
+      - 3 pricing models that fit this type of product
+      - Psychological pricing tactics relevant here
+      - What "too cheap" signals vs. "too expensive" kills
+      - Recommended price point for MVP launch and why
+      - How to test pricing without committing permanently
+
+
+  # ─────────────────────────────────────────
+  # 🐍 PYTHON
+  # ─────────────────────────────────────────
+
+  - trigger: ":py-explain"
+    replace: |
+      Python concept I don't understand: [CONCEPT]
+
+      Explain it to me like I'm a sysadmin who knows Bash and PowerShell well.
+      Use analogies to things I already know.
+      Show: simple example → real-world use case → common mistake to avoid.
+      Max 3 code blocks. Keep it practical.
+
+  - trigger: ":py-review"
+    replace: |
+      Review this Python code:
+
+      [PASTE CODE HERE]
+
+      Tell me:
+      1. Bugs or logic errors
+      2. Non-pythonic patterns (and the idiomatic way)
+      3. Performance issues
+      4. Security concerns (if any)
+      5. Refactored version with brief comments on changes
+
+      I'm learning, so explain the "why" behind each suggestion.
+
+  - trigger: ":py-build"
+    replace: |
+      I want to build: [DESCRIPTION OF SCRIPT/TOOL]
+      Input: [WHAT IT RECEIVES]
+      Output: [WHAT IT SHOULD PRODUCE]
+      My level: beginner-intermediate Python, strong in Bash/sysadmin
+
+      Give me:
+      - Recommended approach and libraries
+      - Step-by-step breakdown before writing any code
+      - Full working script with comments
+      - How to test it and edge cases to handle
+
+  - trigger: ":py-debug"
+    replace: |
+      This Python code is failing:
+
+      [PASTE CODE]
+
+      Error message: [PASTE ERROR]
+
+      What I've already tried: [IF ANYTHING]
+
+      Find the root cause, explain why it happens, and give me the fix.
+      Also tell me how to avoid this class of error in the future.
+
+  - trigger: ":py-automate"
+    replace: |
+      Repetitive task I do manually: [DESCRIBE THE TASK]
+      Current approach: [BASH SCRIPT / MANUAL / EXCEL / etc]
+      Environment: [WINDOWS SERVER / LINUX / BOTH]
+
+      Build me a Python script to automate this.
+      Prioritize: readability, error handling, and easy modification later.
+      Add a --dry-run flag if it involves file operations or system changes.
+
+  - trigger: ":py-concept"
+    replace: |
+      I want to understand this Python topic deeply: [TOPIC]
+      e.g. decorators / generators / async / OOP / list comprehensions
+
+      Give me:
+      - Conceptual explanation (no code yet)
+      - When you actually need this vs. when it's overkill
+      - 3 progressively complex examples
+      - 1 real-world project where this shines
+      - Most common misunderstanding about this topic
+
+
+  # ─────────────────────────────────────────
+  # 🖥️ SYSADMIN & IT
+  # ─────────────────────────────────────────
+
+  - trigger: ":incident"
+    replace: |
+      Incident description: [WHAT IS BROKEN]
+      Environment: [OS / SERVICE / INFRA — e.g. Proxmox / Linux / Windows Server]
+      Error or symptom: [PASTE LOGS OR DESCRIBE]
+      What I've tried: [STEPS ALREADY TAKEN]
+
+      Walk me through structured troubleshooting:
+      1. Most likely root causes (ranked by probability)
+      2. Diagnostic commands to run right now
+      3. Step-by-step resolution path
+      4. How to prevent recurrence
+      5. What to document after resolving
+
+  - trigger: ":security-audit"
+    replace: |
+      System/service to audit: [DESCRIPTION]
+      Environment: [OS / NETWORK SETUP]
+
+      Give me a security checklist covering:
+      - Authentication and access control weaknesses
+      - Network exposure and attack surface
+      - Logging and monitoring gaps
+      - Patch and vulnerability management
+      - Quick wins (fix today) vs. long-term hardening
+
+      Format as actionable checklist with priority: CRITICAL / HIGH / MEDIUM
+
+  - trigger: ":runbook"
+    replace: |
+      Task or procedure: [DESCRIBE THE OPERATIONAL TASK]
+      Environment: [INFRA DETAILS]
+      Audience: [YOURSELF / JUNIOR COLLEAGUE / TEAM]
+
+      Write a complete runbook:
+      - Purpose and scope
+      - Prerequisites and access needed
+      - Step-by-step procedure (numbered, with commands)
+      - Expected output at each step
+      - Rollback procedure if something goes wrong
+      - Verification that it worked
+
+  - trigger: ":zabbix"
+    replace: |
+      I need to monitor: [SERVICE / METRIC / HOST]
+      Current setup: Zabbix on Linux
+
+      Give me:
+      - Recommended items/triggers to set up
+      - Thresholds that make sense (with reasoning)
+      - Alert escalation logic
+      - Any Zabbix template I should use or adapt
+      - Sample trigger expression if applicable
+
+  - trigger: ":proxmox"
+    replace: |
+      Proxmox task: [DESCRIBE WHAT YOU WANT TO DO]
+      Current setup: [NUMBER OF NODES / STORAGE TYPE / NETWORK CONFIG]
+
+      Give me step-by-step instructions with:
+      - CLI commands (preferred) and GUI alternative
+      - What could go wrong and how to avoid it
+      - How to verify it worked
+      - Any performance or resource considerations
+
+  - trigger: ":network-debug"
+    replace: |
+      Network problem: [DESCRIBE THE ISSUE]
+      Topology: [VLAN setup / switches / firewall / etc]
+
+      Give me a systematic debug approach:
+      - Layer-by-layer diagnosis (L1 → L7)
+      - Specific commands to run at each layer
+      - Most likely culprits given the symptoms
+      - Fix + how to document the resolution
+
+  - trigger: ":explain-tech"
+    replace: |
+      Technical concept to explain: [CONCEPT]
+      Audience: [MANAGER / NON-TECHNICAL COLLEAGUE / JUNIOR]
+
+      Write a clear explanation with:
+      - 1 analogy a non-tech person would understand
+      - Why it matters in practical terms
+      - What could go wrong if ignored
+      - Max 150 words — be concise
+
+
+  # ─────────────────────────────────────────
+  # 🎯 THINKING & DECISIONS
+  # ─────────────────────────────────────────
+
+  - trigger: ":decide"
+    replace: |
+      I need to make a decision about: [DECISION]
+      Options I'm considering: [OPTION A] vs [OPTION B]
+
+      Apply the following frameworks:
+      1. First principles thinking — break it down to fundamentals
+      2. 10/10/10 rule — how will I feel in 10 minutes, 10 months, 10 years?
+      3. Inversion — what's the worst that happens with each option?
+
+      Give me a clear recommendation at the end.
+
+  - trigger: ":brainstorm"
+    replace: |
+      Topic: [TOPIC]
+
+      Give me 15 unconventional ideas. No obvious ones.
+      For each: one sentence explanation + why it's non-obvious.
+      Push the boundaries. Think like a contrarian.
+
+  - trigger: ":challenge"
+    replace: |
+      I believe: [BELIEF OR ASSUMPTION]
+
+      Act as a sharp critic. Challenge this belief aggressively.
+      Give me: 3 strong counterarguments, 2 blind spots I might have,
+      and 1 question that would make me reconsider everything.
+
+  - trigger: ":reframe"
+    replace: |
+      Problem I'm facing: [PROBLEM]
+
+      Reframe this problem in 5 completely different ways.
+      For each reframe, suggest one unconventional approach to solve it.
+      The goal is to make me see this from an angle I haven't considered.
+
+  - trigger: ":stuck"
+    replace: |
+      I'm procrastinating on: [TASK]
+      The real reason I think I'm avoiding it: [HONEST ANSWER]
+
+      Give me:
+      - The psychological reason I'm stuck (be direct)
+      - A 2-minute starter action to break the block right now
+      - How to structure the next 25 minutes to make real progress
+
+
+  # ─────────────────────────────────────────
+  # 💼 BUSINESS
+  # ─────────────────────────────────────────
+
+  - trigger: ":bizidea"
+    replace: |
+      Evaluate this business idea: [IDEA]
+
+      Give me:
+      - Target market and real pain point it solves
+      - 3 ways to validate it in under 2 weeks with $0
+      - Main risks and how to mitigate them
+      - Realistic revenue model
+      - Similar existing businesses (so I can study them)
+
+  - trigger: ":competitor"
+    replace: |
+      Company/product to analyze: [NAME]
+
+      Break down:
+      - Business model (how they actually make money)
+      - Their biggest weaknesses and gaps
+      - What users complain about most
+      - 3 opportunities someone could exploit against them
+      - Key metrics to track their growth
+
+  - trigger: ":gtm"
+    replace: |
+      Product: [PRODUCT]
+      Target audience: [AUDIENCE]
+      Budget: [BUDGET]
+
+      Create a go-to-market strategy for the first 90 days.
+      Focus on: first 100 users, channels, messaging, and quick wins.
+      Be specific — no generic advice.
+
+  - trigger: ":email-cold"
+    replace: |
+      I'm reaching out to: [PERSON/COMPANY]
+      My goal: [WHAT I WANT]
+      My offer/value: [WHAT I BRING]
+
+      Write a cold email. Max 5 lines. No fluff, no "I hope this finds you well".
+      Subject line + body. Make it feel human, not templated.
+
+  - trigger: ":trends"
+    replace: |
+      Industry/field: [FIELD]
+
+      What are the 5 most underrated trends in this space right now?
+      Not the mainstream ones everyone talks about — the ones that will matter
+      in 2-3 years. For each: why it matters + one person/company already betting on it.
+
+
+  # ─────────────────────────────────────────
+  # 🧠 LEARNING
+  # ─────────────────────────────────────────
+
+  - trigger: ":learn"
+    replace: |
+      I want to learn: [SKILL/TOPIC]
+      Current level: [ZERO / SOME BASICS / INTERMEDIATE]
+      Time available: [X hours/week]
+
+      Give me:
+      - The 20% of knowledge that gives 80% of results (Pareto)
+      - A 4-week learning roadmap
+      - Best free resources (YouTube channels, docs, communities)
+      - The #1 mistake beginners make in this field
+
+  - trigger: ":summarize"
+    replace: |
+      [PASTE TEXT / ARTICLE / VIDEO TRANSCRIPT HERE]
+
+      Summarize this in:
+      - 3 bullet points (key takeaways)
+      - 1 sentence (the core idea)
+      - 1 action I can take today based on this
+
+  - trigger: ":rabbit-hole"
+    replace: |
+      I'm curious about: [TOPIC]
+
+      Take me down the rabbit hole. Give me:
+      - The surface-level explanation (1 min read)
+      - The deeper, non-obvious truth most people miss
+      - 3 books, 2 YouTube channels, 1 subreddit to go deep
+      - 1 mind-blowing fact that will make me want to explore more
+
+  - trigger: ":inspire"
+    replace: |
+      I'm feeling stuck creatively. Topic/field: [TOPIC]
+
+      Give me:
+      - 3 websites or resources I've probably never heard of for inspiration
+      - 2 creators (any medium) who think differently about this
+      - 1 creative constraint or challenge to unstick me right now
+
+
+  # ─────────────────────────────────────────
+  # 🎬 MOVIES & SERIES
+  # ─────────────────────────────────────────
+
+  - trigger: ":watchnext"
+    replace: |
+      I recently loved: [MOVIE/SERIES]
+      What I liked most: [ACTING / PLOT / ATMOSPHERE / VISUALS / etc]
+      Mood right now: [INTENSE / LIGHT / MINDBLOWING / EMOTIONAL / etc]
+
+      Recommend 5 titles I probably haven't seen.
+      For each: 2-sentence pitch and why it matches my taste.
+      No mainstream obvious picks.
+
+  - trigger: ":analyze-film"
+    replace: |
+      Film/Series: [TITLE]
+
+      Give me a deep analysis:
+      - Core themes and what the director was really saying
+      - Symbolism and recurring motifs
+      - Why it resonates (or doesn't) culturally
+      - Most underrated scene and why it matters
+      - What to watch next if I loved this
+
+
+  # ─────────────────────────────────────────
+  # 💪 LIFESTYLE
+  # ─────────────────────────────────────────
+
+  - trigger: ":workout"
+    replace: |
+      My goal: [LOSE FAT / BUILD MUSCLE / IMPROVE ENDURANCE / etc]
+      Training days per week: [NUMBER]
+      Equipment available: [GYM / HOME / CROSSFIT BOX / etc]
+      Current level: [BEGINNER / INTERMEDIATE / ADVANCED]
+
+      Build me a weekly training plan. Include sets, reps, rest times.
+      Add a note on progressive overload strategy.
+
+  - trigger: ":nutrition"
+    replace: |
+      My goal: [CUT / BULK / MAINTAIN / PERFORMANCE]
+      Weight: [KG] — Activity level: [SEDENTARY / ACTIVE / VERY ACTIVE]
+      Dietary restrictions: [NONE / LACTOSE FREE / etc]
+
+      Give me: daily calorie target, macro split (protein/carbs/fat in grams),
+      3 easy high-protein meal ideas, and 2 things to avoid.
+
+  - trigger: ":recover"
+    replace: |
+      I'm experiencing: [MUSCLE SORENESS / FATIGUE / JOINT PAIN / POOR SLEEP / etc]
+      Training frequency: [X days/week]
+
+      Give me a science-backed recovery protocol for this week.
+      Include: sleep optimization, nutrition timing, mobility work, and mental recovery.
+
+  - trigger: ":trip"
+    replace: |
+      Destination: [CITY/COUNTRY]
+      Duration: [X days]
+      Travel style: [BACKPACKER / COMFORT / LUXURY / LOCAL EXPERIENCE]
+      Interests: [FOOD / ARCHITECTURE / NIGHTLIFE / NATURE / etc]
+
+      Build me a day-by-day itinerary. Include:
+      - Hidden gems locals actually go to
+      - What to skip (tourist traps)
+      - Best neighborhoods to stay in
+      - 3 food spots that are not on TripAdvisor top 10
+
+  - trigger: ":weekend"
+    replace: |
+      I'm based in: Netherlands (Ede/Amsterdam area)
+      Budget: [LOW / MEDIUM / HIGH]
+      I want to feel: [ADVENTUROUS / RELAXED / INSPIRED / SOCIAL]
+
+      Give me 5 weekend ideas I can do from here.
+      Mix: local hidden spots + short train/flight trips in Europe.
+
+  - trigger: ":plan-week"
+    replace: |
+      My main goal this week: [GOAL]
+      Hours available outside work: [X hours]
+      Energy levels tend to be: [HIGH MORNING / HIGH EVENING / CONSISTENT]
+
+      Build me a realistic weekly plan. Block time for deep work, content creation,
+      fitness, and recovery. Be honest about what's actually achievable.

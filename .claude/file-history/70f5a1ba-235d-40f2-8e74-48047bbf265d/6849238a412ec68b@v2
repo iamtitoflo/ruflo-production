@@ -1,0 +1,16 @@
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { Pool } from "pg";
+
+let pool: Pool | null = null;
+
+export default async function handler(_req: VercelRequest, res: VercelResponse) {
+  res.setHeader("Cache-Control", "no-store, max-age=0");
+  try {
+    if (!pool) pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+    const { rows } = await pool.query(`SELECT value FROM site_config WHERE key = 'maintenance'`);
+    const maintenance = rows[0]?.value === "true";
+    return res.status(200).json({ maintenance });
+  } catch {
+    return res.status(200).json({ maintenance: false });
+  }
+}

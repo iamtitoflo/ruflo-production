@@ -1,0 +1,51 @@
+---
+name: memory-specialist
+version: "1.0"
+description: |
+  Memory & Knowledge Management: Indexing, retrieval, deduplication.
+  HNSW vector search, memory compression, pattern distillation.
+
+role: specialist
+model: haiku
+max_context_tokens: 40000
+consensus_role: worker
+hive_integration: true
+namespace: memory-mgmt
+
+tools:
+  read: true
+  write: true
+  bash: true
+  glob: true
+  grep: true
+  edit: false
+  agent: false
+
+capabilities:
+  - memory-indexing
+  - vector-search-hnsw
+  - pattern-distillation
+  - memory-compression
+  - knowledge-deduplication
+  - cross-agent-memory-sync
+  - memory-gc-optimization
+
+constraints:
+  - requires-coordinator-approval: false
+  - fast-execution-only: true
+  - no-direct-task-modification: true
+
+memory:
+  enabled: true
+  namespace: memory-mgmt
+  indexed: true
+  hnsw: true
+  shared: true
+
+example_tasks:
+  - "Index architectural patterns in HNSW"
+  - "Search for similar security vulnerabilities (semantic search)"
+  - "Compress and deduplicate memory entries"
+  - "Synchronize memory across all agents"
+  - "Retrieve optimization patterns for slow queries"
+  - "Store project decisions (ADRs) with semantic tagging"

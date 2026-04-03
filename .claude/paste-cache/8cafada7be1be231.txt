@@ -1,0 +1,28 @@
+Eres un experto en copywriting de ventas y optimización de landings para servicios de ciberseguridad dirigidos a autónomos españoles.
+Adapta mi web actual (pégala completa aquí abajo) a esta oferta mínima viable y agresiva para maximizar conversiones rápidas mientras trabajo full-time en Holanda:
+Oferta principal:
+•  Auditoría Digital Gratis de 20-30 min (por Zoom o Loom) + Setup Blindaje Básico a 97-147€ one-time.
+•  Upsell inmediato: Guardia Digital Mensual a 19-29€/mes (alertas + revisión mensual).
+•  Mensaje clave: “Mientras tú trabajas en Holanda, yo blindo tus cuentas y negocio español desde cero. Ves tus riesgos reales en la auditoría y duermes tranquilo.”
+Elementos obligatorios a incluir:
+•  Hero potente con hook: “Autónomos españoles: INCIBE gestionó 122.223 incidentes de ciberseguridad en 2025 (+26%). El 87% tiene vulnerabilidades graves que les pueden costar miles de euros.”
+•  Enfoque en autónomos que mezclan vida personal y negocio (email, facturación, móvil).
+•  Beneficios claros: tiempo ahorrado, riesgo reducido, tranquilidad.
+•  Llamada a acción fuerte: botón “Reservar Auditoría Gratis Ahora” que lleve a Calendly.
+•  Prueba: estadísticas INCIBE 2025 (122.223 incidentes, +26%, 45.445 fraudes online).
+•  Garantía: “Si en 14 días no ves diferencia clara, te devuelvo el 100%”.
+•  Sección de qué incluye la auditoría (lista breve de 8-10 puntos: brechas de email, 2FA, dispositivos, huella digital básica, etc.).
+•  Precios claros y comparación con “hacerlo tú mismo”.
+•  Lead magnet opcional: Checklist “17 vulnerabilidades comunes”.
+•  Diseño simple, limpio, urgente y de confianza (no hype exagerado).
+Tono: Directo, honesto, profesional pero cercano. Enfocado en dolor real y solución práctica. Lenguaje en español neutro/españa.
+Estructura recomendada de la nueva landing:
+1.  Hero con headline + subtítulo + CTA
+2.  Estadísticas de dolor (INCIBE)
+3.  Qué te pasa si no actúas
+4.  Cómo funciona la auditoría + setup
+5.  Precios y oferta
+6.  Garantía
+7.  Preguntas frecuentes
+8.  CTA final fuerte
+Adapta todo el texto existente, mejora headlines, añade urgencia suave y optimiza para conversión alta. Devuélveme el HTML completo o el copy sección por sección listo para pegar en Carrd/Framer.

@@ -1,0 +1,49 @@
+---
+name: coder
+version: "1.0"
+description: |
+  Implementador Principal: Escribe código production-ready.
+  TDD-first, refactoring, optimización, debugging.
+
+role: specialist
+model: sonnet
+max_context_tokens: 50000
+consensus_role: worker
+hive_integration: true
+namespace: code-impl
+
+tools:
+  read: true
+  write: true
+  edit: true
+  bash: true
+  glob: true
+  grep: true
+  agent: false
+
+capabilities:
+  - code-implementation
+  - tdd-first-approach
+  - refactoring
+  - debugging
+  - optimization
+  - version-control
+
+constraints:
+  - requires-security-review: true
+  - requires-code-review: true
+  - max-file-size: 800
+  - test-coverage-minimum: 80
+
+memory:
+  enabled: true
+  namespace: code-impl
+  indexed: true
+  hnsw: true
+
+example_tasks:
+  - "Implement user authentication module with TDD"
+  - "Refactor legacy codebase to clean architecture"
+  - "Fix critical bugs with minimal side effects"
+  - "Optimize performance bottlenecks"
+  - "Write integration tests for API endpoints"

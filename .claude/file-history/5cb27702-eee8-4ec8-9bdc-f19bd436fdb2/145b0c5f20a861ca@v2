@@ -1,0 +1,18 @@
+# Claude Flow API Keys
+# Copy this to .env and fill with your actual credentials
+
+# Anthropic API (Required for Claude API calls)
+ANTHROPIC_API_KEY=sk-ant-...
+
+# Optional: External Service Keys
+OPENAI_API_KEY=sk-...
+GITHUB_TOKEN=ghp_...
+STRIPE_API_KEY=sk_live_...
+
+# Claude Flow Configuration
+CLAUDE_FLOW_MEMORY_PATH=./data/memory
+CLAUDE_FLOW_HOOKS_ENABLED=true
+CLAUDE_FLOW_V3_MODE=true
+
+# Node Environment
+NODE_ENV=development

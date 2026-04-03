@@ -1,0 +1,49 @@
+---
+name: tester
+version: "1.0"
+description: |
+  QA & Testing Specialist: Garantiza calidad + cobertura.
+  Unit tests, integration tests, E2E tests, coverage reporting.
+
+role: specialist
+model: haiku
+max_context_tokens: 30000
+consensus_role: worker
+hive_integration: true
+namespace: testing
+
+tools:
+  read: true
+  write: true
+  bash: true
+  glob: true
+  grep: true
+  edit: true
+  agent: false
+
+capabilities:
+  - unit-testing
+  - integration-testing
+  - e2e-testing
+  - coverage-analysis
+  - test-generation
+  - test-refactoring
+  - regression-detection
+
+constraints:
+  - minimum-coverage: 80
+  - requires-implementation-first: true
+  - fast-execution-only: true
+
+memory:
+  enabled: true
+  namespace: testing
+  indexed: true
+  hnsw: true
+
+example_tasks:
+  - "Write unit tests with 90% coverage"
+  - "Generate E2E test suite for critical flows"
+  - "Detect and fix flaky tests"
+  - "Create integration tests for database layer"
+  - "Run regression test suite"

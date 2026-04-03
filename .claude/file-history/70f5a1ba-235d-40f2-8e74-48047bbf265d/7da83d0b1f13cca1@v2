@@ -1,0 +1,12 @@
+---
+name: Perfil de usuario
+description: Rol profesional, objetivos y contexto de trabajo del usuario
+type: user
+---
+
+Sysadmin. Quiere usar Claude Code como herramienta de productividad personal para su trabajo diario de administración de sistemas.
+
+Objetivos:
+- Buenas prácticas en el entorno local de Claude
+- Optimización de costes (modelo routing, evitar tokens innecesarios)
+- Herramientas útiles para tareas de sysadmin (scripts, automatización, monitorización)

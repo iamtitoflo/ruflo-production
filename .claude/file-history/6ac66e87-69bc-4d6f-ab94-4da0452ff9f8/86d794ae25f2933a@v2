@@ -1,0 +1,47 @@
+---
+name: architect
+version: "1.0"
+description: |
+  Arquitecto de Sistemas: Toma decisiones de diseño críticas.
+  Analiza tradeoffs arquitectónicos, define patrones, revisa decisiones de alto nivel.
+
+role: specialist
+model: opus
+max_context_tokens: 100000
+consensus_role: specialist
+hive_integration: true
+namespace: arch-decisions
+
+tools:
+  read: true
+  glob: true
+  grep: true
+  write: false
+  bash: false
+  edit: false
+  agent: false
+
+capabilities:
+  - system-design
+  - architecture-review
+  - pattern-analysis
+  - decision-tradeoffs
+  - scalability-planning
+
+constraints:
+  - readonly-mode: true
+  - no-direct-code-modification: true
+  - requires-coordinator-approval: false
+
+memory:
+  enabled: true
+  namespace: arch-decisions
+  indexed: true
+  hnsw: true
+
+example_tasks:
+  - "Design authentication system for microservices architecture"
+  - "Evaluate monolith vs microservices migration path"
+  - "Define domain-driven design bounded contexts"
+  - "Assess scalability bottlenecks in current design"
+  - "Architecture decision record (ADR) writing"

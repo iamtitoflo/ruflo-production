@@ -1,0 +1,308 @@
+# Claude Code + Ruflo v3 Production Configuration
+
+**Arquitectura Suprema**: Sysadmin Stack + Hive-Mind Orchestration
+**Última actualización**: 2026-04-03
+**Versión**: 3.5.51 (Ruflo v3)
+
+---
+
+## 🎯 Model Routing (3-Tier Auto-Intelligence)
+
+| Complejidad | Modelo | Latencia | Coste | Casos de Uso |
+|---|---|---|---|---|
+| **Baja (<30%)** | Haiku 4.5 | ~500ms | $0.0002 | Triage, tests, investigación rápida, subagentes sencillos |
+| **Media (30-70%)** | Sonnet 4.6 | 2-3s | $0.003 | Coding, refactor, planificación, debugging |
+| **Alta (>70%)** | Opus 4.6 | 4-6s | $0.015 | Arquitectura, seguridad, decisiones críticas, análisis profundo |
+
+**OpenRouter** (fallback):
+```bash
+export OPENROUTER_API_KEY=sk-...
+export OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+```
+
+---
+
+## 🧠 Hive-Mind + Swarm Orchestration
+
+### Topología por Tarea
+
+**Hierarchical** (Coding, Refactoring):
+```bash
+claude-flow swarm init --topology hierarchical --max-agents 8 --consensus raft
+```
+
+**Mesh** (Análisis distribuido, Testing):
+```bash
+claude-flow swarm init --topology mesh --max-agents 12 --consensus byzantine
+```
+
+**Adaptive** (Escalado dinámico):
+```bash
+claude-flow swarm init --topology adaptive --max-agents 15 --self-healing true
+```
+
+### Hive-Mind Commands (Consensus Byzantine)
+
+```bash
+# Iniciar hive-mind con Raft
+claude-flow hive-mind init --consensus raft --heartbeat 300ms
+
+# Spawn agentes con sincronización
+claude-flow agent spawn -t coder --hive --role specialist
+
+# Ver estado del consenso
+claude-flow hive-mind status --metrics
+
+# Force rebalance (emergencias)
+claude-flow hive-mind rebalance --topology mesh
+```
+
+---
+
+## 👥 Subagentes Especializados (6 Roles + Coordinador)
+
+Cada agente: modelo dedicado, single-responsibility, shared memory namespace.
+
+```bash
+# 1. ARCHITECT (Opus) — Decisiones de diseño
+claude-flow agent register -t architect --model opus --max-context 100000 \
+  --namespace arch-decisions --tools read,glob,grep
+
+# 2. CODER (Sonnet) — Implementación principal
+claude-flow agent register -t coder --model sonnet --max-context 50000 \
+  --namespace code-impl --tools read,write,edit,bash
+
+# 3. TESTER (Haiku) — Tests + coverage
+claude-flow agent register -t tester --model haiku --max-context 30000 \
+  --namespace testing --tools bash,read,write
+
+# 4. SECURITY-AUDITOR (Opus) — Vulnerabilidades críticas
+claude-flow agent register -t security-auditor --model opus --max-context 80000 \
+  --namespace security --tools grep,read --readonly true
+
+# 5. DEVOPS-ENGINEER (Sonnet) — Infra, CI/CD, Docker, Kubernetes
+claude-flow agent register -t devops-engineer --model sonnet --max-context 50000 \
+  --namespace devops --tools bash,read,write
+
+# 6. MEMORY-SPECIALIST (Haiku) — Memory indexing + retrieval + HNSW
+claude-flow agent register -t memory-specialist --model haiku --max-context 40000 \
+  --namespace memory-mgmt --tools read,write,bash
+
+# 7. COORDINATOR (Sonnet) — Orquestación general (asignación de tareas)
+claude-flow agent register -t coordinator --model sonnet --max-context 60000 \
+  --namespace coordination --tools read,bash --role leader
+```
+
+---
+
+## 🎣 Hooks Automáticos (Auto-Quality + Security)
+
+### Pre-Commit Hooks
+```json
+{
+  "hooks": {
+    "pre-commit": {
+      "security-scan": {
+        "cmd": "claude-flow security scan --fix",
+        "fail-on-error": true,
+        "timeout": 60000
+      },
+      "lint-check": {
+        "cmd": "npm run lint -- --fix",
+        "fail-on-error": true
+      },
+      "test-coverage": {
+        "cmd": "npm test -- --coverage --silent",
+        "threshold": 80,
+        "fail-on-error": true
+      }
+    },
+    "post-commit": {
+      "memory-update": {
+        "cmd": "claude-flow memory store --key=commit-$(git rev-parse --short HEAD) --value=$(git log -1 --format=%B) --namespace=commits --ttl=2592000",
+        "async": true
+      }
+    }
+  }
+}
+```
+
+### Post-Task Hooks
+```json
+{
+  "post-task": {
+    "checkpoint": {
+      "cmd": "claude-flow session checkpoint --compress",
+      "async": true
+    },
+    "memory-sync": {
+      "cmd": "claude-flow memory sync --with-agents",
+      "async": true
+    }
+  }
+}
+```
+
+---
+
+## ⚡ Behavioral Rules (Enforced Always)
+
+- ✅ **One Message = All Parallel Ops**: Todas las acciones concurrentes en 1 mensaje
+- ✅ **Planning First + TDD**: Arquitectura → Tests → Código → Review
+- ✅ **Context Hygiene**: <60% ventana máxima (16k tokens de 32k)
+- ✅ **No hardcoded secrets**: .env, API keys → env vars únicamente
+- ✅ **Single Responsibility**: Un agente = una responsabilidad clara
+- ✅ **Shared Memory Namespace**: Todos los agentes comparten `--namespace coordination`
+
+---
+
+## 🔐 Security Rules
+
+- [ ] No secrets en source code (grep antes de commit)
+- [ ] Validación input en límites del sistema
+- [ ] SQL injection prevention: prepared statements siempre
+- [ ] XSS prevention: sanitizar HTML output
+- [ ] CSRF protection activo
+- [ ] Rate limiting en todos endpoints
+- [ ] Error messages no revelan info sensible
+
+```bash
+# Pre-commit security scan
+claude-flow security scan --fix && git add . && git commit -m "security: fix findings"
+```
+
+---
+
+## 📊 Execution Strategy
+
+### Task Dispatch (Hive-Mind Routing)
+
+```
+Tarea llega → COORDINATOR evalúa complejidad
+  |
+  ├─ Complejidad BAJA (<30%) → TESTER/MEMORY-SPECIALIST (Haiku)
+  ├─ Complejidad MEDIA (30-70%) → CODER/DEVOPS (Sonnet)
+  └─ Complejidad ALTA (>70%) → ARCHITECT/SECURITY (Opus)
+
+COORDINATOR mantiene estado + checkpoints
+Agentes sincronizados vía shared memory namespace
+```
+
+### Spawn Multi-Agent Tasks
+
+```bash
+# Spawn swarm para feature complexity (simultáneo)
+claude-flow agent spawn -t coder --name coder-1 --hive &
+claude-flow agent spawn -t tester --name tester-1 --hive &
+claude-flow agent spawn -t devops-engineer --name devops-1 --hive &
+wait
+
+# Monitoring
+claude-flow hive-mind status --metrics --continuous
+```
+
+---
+
+## 🛠️ Quick Setup Commands
+
+```bash
+# 1. Inicializar Ruflo + MCP
+claude-flow init --wizard
+claude-flow mcp add claude-flow -- npx -y @claude-flow/cli@latest
+
+# 2. Registrar subagentes (arriba en este archivo)
+# (Ejecutar cada comando `agent register`)
+
+# 3. Iniciar daemon + doctor
+claude-flow daemon start --log-level=debug
+claude-flow doctor --fix
+
+# 4. Hive-Mind initialization
+claude-flow hive-mind init --consensus raft --heartbeat 300ms
+
+# 5. Memory system setup
+claude-flow memory init --backend hnsw --dimension 1536 --ef-construction 200
+
+# 6. Hooks setup
+claude-flow hooks config --from-file .claude/hooks.json
+```
+
+---
+
+## 📚 Memory Commands Quick Reference
+
+```bash
+# Store pattern (architecture, decision, pattern)
+claude-flow memory store \
+  --key "pattern-sysadmin-automation" \
+  --value "PowerShell + Python CLI wrapper pattern for Proxmox/AD/Intune tasks" \
+  --namespace sysadmin-patterns \
+  --ttl 7776000 \  # 90 days
+  --tags "automation,infrastructure,devops"
+
+# Search with HNSW
+claude-flow memory search \
+  --query "authentication mechanisms for microservices" \
+  --namespace security-patterns \
+  --limit 5 \
+  --threshold 0.75
+
+# List all in namespace
+claude-flow memory list --namespace sysadmin-patterns --limit 20
+
+# Retrieve exact key
+claude-flow memory retrieve \
+  --key "pattern-sysadmin-automation" \
+  --namespace sysadmin-patterns
+```
+
+---
+
+## 🎯 Concurrency Rules
+
+- **ALL agent spawning → ONE message**
+- **ALL file ops (read/write/edit) → ONE message**
+- **ALL bash commands → ONE message OR piped**
+- **NO polling after spawn** — trust agents + wait for results
+- **Use TaskUpdate for progress tracking** (not logs)
+
+---
+
+## 📋 File Organization
+
+```
+.claude/
+├── agents/
+│   ├── architect.yaml
+│   ├── coder.yaml
+│   ├── tester.yaml
+│   ├── security-auditor.yaml
+│   ├── devops-engineer.yaml
+│   ├── memory-specialist.yaml
+│   └── coordinator.yaml
+├── hooks.json
+├── settings.json
+└── memory/
+    └── HNSW indices...
+```
+
+---
+
+## 🚀 Production Checklist
+
+- [ ] Ruflo daemon running (`claude-flow daemon status`)
+- [ ] All 7 subagentes registered (`claude-flow agent list`)
+- [ ] Hive-mind consensus activo (`claude-flow hive-mind status`)
+- [ ] Memory HNSW indexed (`claude-flow memory status`)
+- [ ] Hooks activos (`claude-flow hooks status`)
+- [ ] OpenRouter fallback configured
+- [ ] Git pre-commit hooks installed
+- [ ] .env.example committed (nunca .env)
+
+---
+
+## 📞 Support & Docs
+
+- **Docs**: https://github.com/ruvnet/ruflo
+- **Issues**: https://github.com/ruvnet/ruflo/issues
+- **CLI Help**: `claude-flow --help`

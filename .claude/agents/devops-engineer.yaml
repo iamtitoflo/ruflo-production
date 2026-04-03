@@ -1,0 +1,52 @@
+---
+name: devops-engineer
+version: "1.0"
+description: |
+  DevOps & Infrastructure Specialist: IaC, CI/CD, containerization.
+  Docker, Kubernetes, Proxmox (en contexto sysadmin), pipelines, monitoring.
+
+role: specialist
+model: sonnet
+max_context_tokens: 50000
+consensus_role: worker
+hive_integration: true
+namespace: devops
+
+tools:
+  read: true
+  write: true
+  edit: true
+  bash: true
+  glob: true
+  grep: true
+  agent: false
+
+capabilities:
+  - infrastructure-as-code
+  - ci-cd-pipeline-design
+  - containerization
+  - kubernetes-orchestration
+  - proxmox-automation
+  - active-directory-scripting
+  - monitoring-alerting
+  - deployment-automation
+
+constraints:
+  - requires-approval-for-prod: true
+  - requires-backup-before-changes: true
+  - no-destructive-ops-without-approval: true
+
+memory:
+  enabled: true
+  namespace: devops
+  indexed: true
+  hnsw: true
+
+example_tasks:
+  - "Design Kubernetes deployment strategy"
+  - "Create CI/CD pipeline with GitHub Actions"
+  - "Write Terraform/Ansible IaC for infrastructure"
+  - "Set up Docker multi-stage builds"
+  - "Automate Proxmox VM provisioning (sysadmin context)"
+  - "Configure monitoring (Prometheus, Grafana)"
+  - "Implement secrets management (HashiCorp Vault)"

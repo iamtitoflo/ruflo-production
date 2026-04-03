@@ -1,0 +1,380 @@
+# CLAUDE.md — TechByFlo Codebase Guide
+
+This file provides AI assistants with the context needed to navigate, understand, and contribute to this repository effectively.
+
+---
+
+## Project Overview
+
+**TechByFlo** is a personal website for a Spanish-language tech educator/influencer focused on digital security, useful apps, tech critique, and IT humor ("Criterio Tech y Seguridad Digital"). It is a full-stack web application deployed primarily as a static site on Vercel.
+
+The site includes a **Privacy Score quiz** with an email gate and upsell funnel, a **live scam alert feed** pulling from RSS sources, and premium service pages for B2B and executive security clients.
+
+---
+
+## Repository Structure
+
+```
+techbyflo/
+├── client/                        # React/TypeScript frontend
+│   ├── src/
+│   │   ├── pages/                 # Route-level page components (11 pages)
+│   │   ├── components/            # Custom components + shadcn/ui primitives
+│   │   │   ├── layout.tsx         # Main layout wrapper + footer
+│   │   │   ├── score-gauge.tsx    # Animated SVG gauge for quiz scores
+│   │   │   └── ui/                # 55+ shadcn/ui components (do not edit directly)
+│   │   ├── hooks/                 # Custom React hooks
+│   │   ├── lib/                   # Utility functions + React Query setup
+│   │   ├── data/                  # Static data files
+│   │   │   ├── offers.ts          # Product offers/pricing definitions
+│   │   │   └── quiz-questions.ts  # 15 quiz questions + scoring logic
+│   │   ├── App.tsx                # Router wrapper + QueryClientProvider
+│   │   ├── main.tsx               # React DOM entry point
+│   │   └── index.css              # Global styles + Tailwind theme variables
+│   ├── public/                    # Static assets (favicon, logos, OG images)
+│   └── index.html                 # HTML template
+├── server/                        # Express.js backend
+│   ├── index.ts                   # Server setup, middleware, logging
+│   ├── routes.ts                  # API route registration (currently stub)
+│   ├── storage.ts                 # IStorage interface + MemStorage implementation
+│   ├── static.ts                  # Static file serving + SPA fallback
+│   └── vite.ts                    # Vite dev middleware
+├── shared/                        # Code shared between client and server
+│   └── schema.ts                  # Drizzle ORM schema (Users table)
+├── api/
+│   └── subscribe.ts               # Vercel serverless function: quiz email subscription
+├── script/
+│   └── build.ts                   # Combined Vite + esbuild build script
+├── vite-plugin-meta-images.ts     # Custom Vite plugin for OG image meta tags
+├── attached_assets/               # Branding/design assets
+├── vercel.json                    # Vercel deployment config
+├── vite.config.ts                 # Vite config with aliases and plugins
+├── drizzle.config.ts              # Drizzle ORM + PostgreSQL config
+├── components.json                # shadcn/ui configuration
+├── postcss.config.js              # PostCSS config for Tailwind
+├── tsconfig.json                  # TypeScript config
+└── package.json                   # Scripts and dependencies
+```
+
+---
+
+## Technology Stack
+
+### Frontend
+| Tool | Version | Purpose |
+|---|---|---|
+| React | 19.2.0 | UI framework |
+| TypeScript | 5.6.3 | Type safety |
+| Vite | 7.1.9 | Build tool + dev server |
+| Tailwind CSS | 4.1.14 | Utility-first styling |
+| shadcn/ui | — | Pre-built component library (55+ components) |
+| Wouter | 3.3.5 | Client-side routing |
+| TanStack React Query | 5.60.5 | Data fetching + caching |
+| Framer Motion | 12.23.24 | Animations |
+| React Hook Form | 7.66.0 | Form management |
+| Zod | 3.25.76 | Schema validation |
+| Lucide React | 0.545.0 | Icons |
+| Sonner | — | Toast notifications |
+
+### Backend
+| Tool | Version | Purpose |
+|---|---|---|
+| Express | 4.21.2 | Web framework |
+| Node.js | 18+ | Runtime |
+| Drizzle ORM | 0.39.3 | Type-safe database access |
+| PostgreSQL (pg) | 8.16.3 | Database driver |
+| Passport.js | 0.7.0 | Authentication (wired but not active) |
+| express-session | 1.18.1 | Session management |
+
+### Build & Dev
+| Tool | Purpose |
+|---|---|
+| esbuild | Server bundling |
+| tsx | TypeScript execution |
+| PostCSS + Autoprefixer | CSS processing |
+
+---
+
+## Development Commands
+
+```bash
+# Install dependencies
+npm install
+
+# Start full-stack dev server (Express + Vite HMR on port 5000)
+npm run dev
+
+# Vite-only dev server (client only)
+npm run dev:client
+
+# Type checking
+npm run check
+
+# Production build (Vite client + esbuild server → dist/)
+npm run build
+
+# Run production server
+npm start
+
+# Sync database schema (requires DATABASE_URL)
+npm run db:push
+```
+
+---
+
+## Environment Variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `DATABASE_URL` | For DB features | PostgreSQL connection string |
+| `NODE_ENV` | Auto-set | `development` or `production` |
+| `PORT` | Optional | Server port (defaults to 5000) |
+| `REPLIT_INTERNAL_APP_DOMAIN` | Optional | Used by OG image meta plugin |
+| `REPLIT_DEV_DOMAIN` | Optional | Used by OG image meta plugin |
+
+Create a `.env` file locally (it is git-ignored). Never commit secrets.
+
+---
+
+## Path Aliases
+
+Configured in `tsconfig.json` and `vite.config.ts`:
+
+| Alias | Resolves To |
+|---|---|
+| `@/*` | `client/src/*` |
+| `@shared/*` | `shared/*` |
+| `@assets/*` | `attached_assets/*` |
+
+Always use these aliases for imports rather than relative paths when crossing major directories.
+
+---
+
+## Pages
+
+| Route | File | Description |
+|---|---|---|
+| `/` | `pages/home.tsx` | Hero with typewriter + particles, pain points, product hierarchy (6 tiers), content CTAs |
+| `/recursos` | `pages/resources.tsx` | Tool recommendations in 3 categories (Security, Organization, AI) |
+| `/estafas` | `pages/scams.tsx` | Live scam alerts via RSS (OSI/INCIBE/Policía), auto-refreshes every 30 min |
+| `/contacto` | `pages/contact.tsx` | Two-option routing: Quiz entry or B2B collaboration |
+| `/sobre-mi` | `pages/about.tsx` | Bio, career timeline, certifications (VCP-DCV, AZ-104), skills, CTAs |
+| `/quiz` | `pages/quiz.tsx` | 15-question Privacy Score quiz → email gate → scored results → plan upsell |
+| `/trabaja-conmigo` | `pages/work-with-me.tsx` | Dual-audience services (Individual/Brands), funnel viz, FAQ, contact form |
+| `/guard` | `pages/guard.tsx` | Premium "Digital Guard" executive service (Core/Executive/Elite €1500–4000/mo) |
+| `/gracias` | `pages/gracias.tsx` | Post-purchase thank you, order confirmation, next steps, upsell suggestions |
+| (active override) | `pages/maintenance.tsx` | Maintenance mode page — currently rendered for all routes in `App.tsx` |
+| `*` | `pages/not-found.tsx` | 404 page |
+
+> **Important:** `client/src/App.tsx` currently renders `<Maintenance />` for all routes. To restore normal routing, replace the `<Maintenance />` render with the full `<Switch>` route tree.
+
+Routing is handled by **Wouter** in `client/src/App.tsx`.
+
+---
+
+## Data Files
+
+### `client/src/data/offers.ts`
+
+Defines the 4 product offers used across the quiz funnel and upsell pages:
+
+| ID | Price | Type | Description |
+|---|---|---|---|
+| `blindaje-personal` | 39€ | Individual | Basic personal security checklist |
+| `blindaje-personal-plus` | 119€ | Individual | Includes 1:1 coaching session |
+| `borrado-huella-digital` | 69€ | Upsell | Digital footprint erasure |
+| `guardia-digital` | 149€/month | Executive | Ongoing protection service |
+
+Upsell mapping: Personal → Borrado; Plus → Guardia.
+
+### `client/src/data/quiz-questions.ts`
+
+15 questions covering: password managers, 2FA, VPN, phishing, OS updates, app permissions, banking security, backups, social media privacy, disk encryption, browser security, breach monitoring, password reuse, social config, and E2E messaging.
+
+**Scoring:** 7 pts max per question, 105 total → normalized to 100.
+
+**Score categories:**
+- 0–20: Crítico
+- 21–40: Vulnerable
+- 41–60: En Riesgo
+- 61–80: Protegido
+- 81–100: Blindado
+
+---
+
+## UI & Styling Conventions
+
+### Tailwind CSS v4 Theme (defined in `client/src/index.css`)
+
+```css
+--color-primary: hsl(50 100% 50%)    /* #FFD400 — Yellow, CTAs, highlights */
+--color-background: hsl(208 58% 14%) /* #0F2438 — Dark blue, page background */
+--color-secondary: hsl(208 40% 25%)  /* #384A5E — Lighter blue, cards, panels */
+```
+
+### Custom CSS Classes & Animations
+
+- `.glass-card` — Frosted glass effect (`backdrop-blur` + semi-transparent bg)
+- `@keyframes particle-rise` — Floating particle animation (home page)
+- `@keyframes cursor-blink` — Typewriter cursor effect (home page)
+- `@keyframes live-dot` — Pulsing red indicator (scams page)
+- `@keyframes shimmer-slide` — Button shimmer effect
+- `@keyframes scan-line` — Scan animation (scams page header)
+- `@keyframes gauge-fill` — Quiz score gauge fill animation
+- `@keyframes skeleton-wave` — Loading skeleton shimmer
+
+### Typography
+
+- **Primary font:** Inter (Google Fonts, 400–600 weights)
+- **Secondary font:** Plus Jakarta Sans (Google Fonts, 400–800 weights)
+
+### Components
+
+All UI primitives come from **shadcn/ui** (new-york style, neutral colors). They live in `client/src/components/ui/`. Do not modify these files directly — regenerate via the `shadcn` CLI if updates are needed.
+
+**Custom components:**
+- `client/src/components/layout.tsx` — Wraps all pages; provides maintenance alert, back link, footer with TikTok/Instagram links
+- `client/src/components/score-gauge.tsx` — Animated SVG circular gauge for quiz score display
+
+---
+
+## Backend Architecture
+
+### Server (`server/index.ts`)
+
+- Express app with JSON body parsing
+- Raw body captured for webhook-style routes
+- Request logging middleware (formatted timestamps)
+- Error handling middleware at the bottom
+- In development: Vite middleware injected via `server/vite.ts`
+- In production: Static files served from `dist/public/` via `server/static.ts`
+
+### API Routes (`server/routes.ts`)
+
+Currently a stub. Add routes here and register them via `registerRoutes(httpServer, app)` in `server/index.ts`. All routes must be prefixed with `/api/`.
+
+### Serverless API (`api/subscribe.ts`)
+
+Vercel serverless function that handles email subscription after quiz completion. This runs independently of the Express server on Vercel.
+
+### Storage (`server/storage.ts`)
+
+Defines the `IStorage` interface:
+```ts
+interface IStorage {
+  getUser(id: string): Promise<User | undefined>;
+  getUserByUsername(username: string): Promise<User | undefined>;
+  createUser(user: InsertUser): Promise<User>;
+}
+```
+
+The current implementation (`MemStorage`) uses an in-memory Map and does not persist across restarts. Replace with a PostgreSQL-backed implementation when persistence is needed.
+
+---
+
+## Database
+
+- **ORM:** Drizzle ORM with PostgreSQL dialect
+- **Schema file:** `shared/schema.ts`
+- **Migrations directory:** `migrations/`
+- **Config:** `drizzle.config.ts`
+
+### Current Schema
+
+```ts
+// shared/schema.ts
+export const users = pgTable("users", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  username: text("username").notNull().unique(),
+  password: text("password").notNull(),
+});
+```
+
+To update the schema: edit `shared/schema.ts`, then run `npm run db:push`.
+
+---
+
+## Build System
+
+The `script/build.ts` runs two steps sequentially:
+
+1. **Vite** builds the client to `dist/public/`
+2. **esbuild** bundles the server to `dist/index.cjs` (CommonJS format)
+
+### Server Bundle Allowlist
+
+Common packages are pre-bundled with the server for faster cold starts. The allowlist is maintained in `script/build.ts`. Add packages here only if they cause issues when externalized. Current list includes: `@google/generative-ai`, `axios`, `connect-pg-simple`, `cors`, `date-fns`, `drizzle-orm`, `express`, `jsonwebtoken`, `nodemailer`, `openai`, `passport`, `pg`, `stripe`, `uuid`, `ws`, `zod`, and others.
+
+---
+
+## Custom Vite Plugin
+
+`vite-plugin-meta-images.ts` — A custom Vite plugin that injects Open Graph image meta tags into the HTML output. It reads `REPLIT_INTERNAL_APP_DOMAIN` or `REPLIT_DEV_DOMAIN` to construct the OG image URL. Used in `vite.config.ts`.
+
+---
+
+## Deployment
+
+### Vercel (Primary)
+
+The site deploys as a **static site** from the client build:
+
+```json
+// vercel.json
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/public",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+All routes are rewritten to `index.html` for SPA client-side routing. The `api/subscribe.ts` file is picked up automatically by Vercel as a serverless function.
+
+### Full-Stack Server
+
+To run as a full server (with Express backend):
+```bash
+npm run build
+npm start       # serves dist/index.cjs
+```
+
+---
+
+## Content & Language
+
+- **Primary language:** Spanish — all page content, headings, and copy are in Spanish
+- **Tone:** Informative, direct, tech-savvy but approachable
+- **Social handles:** Instagram `@techbyflo`, TikTok `@techbyflow`
+- **External links:** Kraa.io guides as main CTA destination
+
+When adding or editing content, maintain the Spanish language and the existing casual but professional tone.
+
+---
+
+## Key Conventions
+
+1. **TypeScript strict mode** is enabled — avoid `any` types; use proper typing
+2. **ES modules** — use `import`/`export`, never `require()`
+3. **Path aliases** — use `@/` and `@shared/` for cross-directory imports
+4. **Zod for validation** — validate all external inputs (forms, API bodies) with Zod schemas
+5. **shadcn/ui components** — prefer existing UI primitives over custom HTML; extend via `className` props using `cn()`
+6. **`cn()` utility** — always use `cn()` from `@/lib/utils` to merge Tailwind classes conditionally
+7. **No testing framework** — there are no tests currently; do not assume test infrastructure exists
+8. **API routes prefix** — all backend routes must be under `/api/`
+9. **Static deployment focus** — the backend is minimal; the site primarily functions as a static React app
+10. **React Query** — use `apiRequest()` from `@/lib/queryClient` for all API calls; `staleTime: Infinity`, `retry: false` by default
+
+---
+
+## Git & Branch Conventions
+
+- **Main branch:** `main`
+- **Feature branches:** Follow the pattern `codex/description-[id]` or `claude/description-[id]`
+- **Commit style:** Short imperative subject line, e.g. `Add scam alert for phishing campaign`
+- Work on the designated feature branch and open a PR to `main`
+
+---
+
+## No Testing
+
+There is currently no testing framework configured. If adding tests in the future, **Vitest** is the recommended choice given the Vite-based build setup.

@@ -1,0 +1,65 @@
+{
+  "version": 2,
+  "plugins": {
+    "frontend-design@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "C:\\Users\\flori\\.claude\\plugins\\cache\\claude-plugins-official\\frontend-design\\unknown",
+        "version": "unknown",
+        "installedAt": "2026-03-26T17:27:21.966Z",
+        "lastUpdated": "2026-03-28T19:09:42.785Z",
+        "gitCommitSha": "90accf6fd2008fe0ee9578ebc088740c3a754d58"
+      }
+    ],
+    "everything-claude-code@everything-claude-code": [
+      {
+        "scope": "user",
+        "installPath": "C:\\Users\\flori\\.claude\\plugins\\cache\\everything-claude-code\\everything-claude-code\\1.9.0",
+        "version": "1.9.0",
+        "installedAt": "2026-03-26T17:29:01.041Z",
+        "lastUpdated": "2026-03-26T17:29:01.041Z",
+        "gitCommitSha": "678fb6f0d37eb21470c475360bc564a0f6a8c941"
+      }
+    ],
+    "ui-ux-pro-max@ui-ux-pro-max-skill": [
+      {
+        "scope": "user",
+        "installPath": "C:\\Users\\flori\\.claude\\plugins\\cache\\ui-ux-pro-max-skill\\ui-ux-pro-max\\2.5.0",
+        "version": "2.5.0",
+        "installedAt": "2026-03-26T17:34:17.311Z",
+        "lastUpdated": "2026-03-26T17:34:17.311Z",
+        "gitCommitSha": "506d9230e990c611a6a67c54c4e3a938ea20559d"
+      }
+    ],
+    "playwright@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "C:\\Users\\flori\\.claude\\plugins\\cache\\claude-plugins-official\\playwright\\unknown",
+        "version": "unknown",
+        "installedAt": "2026-03-26T17:36:01.197Z",
+        "lastUpdated": "2026-03-28T19:09:42.766Z",
+        "gitCommitSha": "90accf6fd2008fe0ee9578ebc088740c3a754d58"
+      }
+    ],
+    "claude-mem@thedotmack": [
+      {
+        "scope": "user",
+        "installPath": "C:\\Users\\flori\\.claude\\plugins\\cache\\thedotmack\\claude-mem\\10.6.2",
+        "version": "10.6.2",
+        "installedAt": "2026-03-26T17:40:33.849Z",
+        "lastUpdated": "2026-03-26T17:40:33.849Z",
+        "gitCommitSha": "a656af2bff0fb8bb413a2ad8da1b9f1b4a6d2eb6"
+      }
+    ],
+    "superpowers@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "C:\\Users\\flori\\.claude\\plugins\\cache\\claude-plugins-official\\superpowers\\5.0.7",
+        "version": "5.0.7",
+        "installedAt": "2026-03-26T17:58:50.718Z",
+        "lastUpdated": "2026-04-03T07:36:25.158Z",
+        "gitCommitSha": "eafe962b18f6c5dc70fb7c8cc7e83e61f4cdde06"
+      }
+    ]
+  }
+}

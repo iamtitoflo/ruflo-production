@@ -1,0 +1,52 @@
+Eres el Arquitecto Supremo de Claude Code + Ruflo v3. Mi proyecto ya tiene instalado el skill Ruflo de https://github.com/ruvnet/ruflo.
+
+Mi objetivo es tener el setup MÁS POTENTE posible **pero con MÁXIMA OPTIMIZACIÓN DE RECURSOS** (tokens, costo y velocidad) usando OpenRouter + **memoria persistente** + **portabilidad total vía GitHub** para poder clonar el repo en cualquier PC y recuperar la configuración exacta.
+
+Prioridad #1: RESOURCE OPTIMIZATION & COST EFFICIENCY (igual que antes)
+- Routing 3-tier: Haiku 4.5 / modelos GRATUITOS (70-80%), Sonnet 4.6 (15-25%), Opus 4.6 (solo 5-10%)
+- Token Optimizer + compression + caching + /clear agresivo
+- Contexto siempre <60%
+- CLAUDE.md ultra-lean (máx 120 líneas)
+
+Prioridad #2: PERSISTENT MEMORY + GITHUB PORTABILITY
+- Toda la configuración (CLAUDE.md, subagentes, hooks, settings, skills) debe quedar dentro del repo Git.
+- Memoria persistente debe poder exportarse/importarse fácilmente.
+- Al final debo poder hacer `git clone` en otro PC y tener el swarm idéntico funcionando.
+
+Sigue estas reglas al 100%:
+
+1. MODEL ROUTING y MULTI-AGENTE / SWARM → exactamente como en la versión anterior (con Ruflo hive-mind, subagentes livianos, single-responsibility, modelo barato por defecto).
+
+2. BEST PRACTICES (planning-first, TDD, git commit, context hygiene, hooks de bajo costo).
+
+Acciones concretas que debes hacer AHORA (en orden exacto):
+
+1. Confirma que Ruflo está activo y muestra los comandos clave (hive-mind init, spawn, token-optimizer, memory export/import, etc.).
+
+2. Genera el contenido COMPLETO y optimizado de un nuevo **CLAUDE.md** raíz (máx 120 líneas) con todas las reglas de routing, optimización, agent roles, OpenRouter y best practices.
+
+3. Crea y define al menos 6 subagentes especializados en .claude/agents/ o .agents/ (livianos, modelo barato por defecto).
+
+4. Configura hooks útiles de bajo costo.
+
+5. Inicializa el repositorio Git (si no existe) y crea un .gitignore optimizado que permita commitear .claude/, .claude-flow/, .agents/ pero excluya archivos temporales grandes o sensibles.
+
+6. Genera un archivo **setup.sh** (ejecutable) que en cualquier PC nuevo haga:
+   - git clone
+   - npx ruflo@latest init --update
+   - Importar memoria
+   - Activar Token Optimizer y hive-mind
+   - Mostrar estado final
+
+7. Proporciona los comandos exactos de shell para:
+   - Inicializar Ruflo hive-mind + Token Optimizer
+   - Exportar memoria actual (para backup)
+   - Commit inicial con todo el setup
+
+8. Al final, dame un resumen claro de "Setup completado" con:
+   - Archivos creados
+   - Cómo hacer el primer commit y push a GitHub
+   - Instrucciones exactas para clonar y recuperar en otro PC
+   - Cómo monitorear consumo de tokens/costo
+
+Sé extremadamente detallado, profesional y listo para producción. No hagas suposiciones: genera todo el código, archivos y comandos necesarios. Este setup debe ser 100% portable y con memoria persistente.

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ruflo:*)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "claude-flow"
+  ],
+  "enabledPlugins": {
+    "claude-mem@thedotmack": false
+  },
+  "enableAllProjectMcpServers": true
+}

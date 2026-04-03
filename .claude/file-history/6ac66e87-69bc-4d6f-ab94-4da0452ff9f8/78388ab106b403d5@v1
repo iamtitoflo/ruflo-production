@@ -1,0 +1,8 @@
+# MEMORY.md
+
+- [Idioma preferido](user_language.md) — El usuario prefiere comunicarse en español
+- [Perfil de usuario](user_profile.md) — Sysadmin (trabaja en Holanda), stack: Proxmox/AD/Intune/PS/Python/redes, negocio de privacidad digital para autónomos españoles
+- [Proyecto techbyflo](project_techbyflo.md) — Web de negocio: stack, oferta, API endpoints, admin panel, DB, env vars y commits clave
+- [Entorno Claude](project_claude_env.md) — Optimizaciones aplicadas: model Sonnet, limpieza 400MB, agentes y comandos de sysadmin
+- [Model routing automático 3-tier](feature_model_routing.md) — Haiku/Sonnet/Opus vía hook, score de complejidad 0-100
+- [Espanso Swiss Knife](espanso_swiss_knife.md) — Prompt deck (60+ triggers), v2 con focus filters y feedback loops

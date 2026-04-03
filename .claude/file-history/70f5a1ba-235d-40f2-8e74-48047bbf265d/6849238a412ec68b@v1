@@ -1,0 +1,13 @@
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { kv } from "@vercel/kv";
+
+export default async function handler(_req: VercelRequest, res: VercelResponse) {
+  try {
+    const maintenance = (await kv.get<boolean>("site:maintenance")) ?? false;
+    res.setHeader("Cache-Control", "no-store, max-age=0");
+    return res.status(200).json({ maintenance });
+  } catch {
+    // If KV not configured, default to not in maintenance
+    return res.status(200).json({ maintenance: false });
+  }
+}

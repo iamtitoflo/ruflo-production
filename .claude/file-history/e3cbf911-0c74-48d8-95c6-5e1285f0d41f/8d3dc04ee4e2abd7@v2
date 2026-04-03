@@ -1,0 +1,36 @@
+---
+name: Entorno Claude configurado
+description: Estado del entorno local de Claude — optimizaciones, agentes y configuración aplicada
+type: project
+---
+
+## Optimizaciones aplicadas (2026-03-28)
+
+### Costes
+- Model default: `claude-haiku-4-5-20251001` (cambiado de sonnet → haiku, 2026-03-29)
+- 3-tier auto-routing activo vía `UserPromptSubmit` hook:
+  - Haiku (score ≤30): preguntas simples, status, conversación
+  - Sonnet (score ≤70): código, planificación, scripts, debugging
+  - Opus (score >70): arquitectura, seguridad, análisis complejo
+- Hook emite `[TASK_MODEL_RECOMMENDATION: haiku|sonnet|opus]` en cada prompt
+- Archivos modificados: `router.js`, `hook-handler.cjs`, `settings.json`, `performance.md`
+
+### Limpieza de espacio
+- Eliminados `~/.claude/plugins/cache/` (~289MB) — regenerable
+- Eliminados `~/.claude/plugins/marketplaces/thedotmack/` (~279MB) — no usado
+- Espacio liberado: ~400MB (de 484MB → 85MB)
+
+### Agentes personalizados creados
+- `~/.claude/agents/sysadmin.md` — especializado en Proxmox, AD, Intune, PS, Python, redes
+
+### Comandos personalizados creados
+- `~/.claude/commands/ps-review.md` — revisar scripts PowerShell antes de ejecutar en prod
+- `~/.claude/commands/infra-plan.md` — generar runbook para tareas de infraestructura
+
+### GitHub CLI
+- Instalado: GitHub CLI v2.89.0
+- Autenticado como: `iamtitoflo`
+- Scopes: gist, read:org, repo, workflow
+
+**Why:** Optimización de costes y productividad para uso diario de Claude como sysadmin.
+**How to apply:** Al sugerir modelos o flujos de trabajo, usar Sonnet por defecto y Haiku para tareas simples.

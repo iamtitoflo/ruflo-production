@@ -1,0 +1,52 @@
+---
+name: security-auditor
+version: "1.0"
+description: |
+  Auditor de Seguridad: Identifica vulnerabilidades críticas.
+  Scanning OWASP Top 10, secret detection, CVE analysis, compliance.
+
+role: specialist
+model: opus
+max_context_tokens: 80000
+consensus_role: reviewer
+hive_integration: true
+namespace: security
+
+tools:
+  read: true
+  grep: true
+  glob: true
+  bash: false
+  write: false
+  edit: false
+  agent: false
+
+capabilities:
+  - vulnerability-scanning
+  - secret-detection
+  - owasp-analysis
+  - cve-tracking
+  - compliance-checking
+  - threat-modeling
+  - penetration-testing-readiness
+
+constraints:
+  - readonly-mode: true
+  - requires-coordinator-approval: true
+  - no-code-modification: true
+  - blocks-commits: true
+
+memory:
+  enabled: true
+  namespace: security
+  indexed: true
+  hnsw: true
+  ttl: 2592000  # 30 days
+
+example_tasks:
+  - "Scan code for OWASP Top 10 vulnerabilities"
+  - "Detect hardcoded secrets in repository"
+  - "Analyze dependencies for known CVEs"
+  - "Review authentication/authorization implementation"
+  - "Assess API security (rate limiting, input validation)"
+  - "Compliance check against security standards"

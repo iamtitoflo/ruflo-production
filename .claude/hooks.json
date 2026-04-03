@@ -1,0 +1,135 @@
+{
+  "version": "3.0",
+  "hooks": {
+    "PreToolUse": {
+      "security-scan-pre": {
+        "condition": "tool === 'Bash' && command.includes('npm publish')",
+        "action": "validate-secrets",
+        "fail-on-error": true,
+        "description": "Scan for secrets before publishing to npm"
+      },
+      "validate-model-selection": {
+        "condition": "tool === 'Agent'",
+        "action": "route-by-complexity",
+        "routing": {
+          "low": "haiku",
+          "medium": "sonnet",
+          "high": "opus"
+        },
+        "description": "Auto-select model based on task complexity"
+      }
+    },
+    "PostToolUse": {
+      "auto-lint-after-write": {
+        "condition": "tool === 'Write' && filename.endsWith(('.js', '.ts', '.py'))",
+        "action": "bash",
+        "command": "npm run lint -- --fix {filename}",
+        "timeout": 30000,
+        "async": true,
+        "description": "Auto-format code after writing"
+      },
+      "security-review-post": {
+        "condition": "tool === 'Edit'",
+        "action": "spawn-agent",
+        "agent": "security-auditor",
+        "files-to-review": "changed-files",
+        "timeout": 120000,
+        "description": "Auto-trigger security review after code edits"
+      },
+      "test-coverage-check": {
+        "condition": "tool === 'Write' && filename.endsWith('.test.(js|ts|py)')",
+        "action": "bash",
+        "command": "npm test -- --coverage --silent && echo '✓ Coverage OK'",
+        "timeout": 60000,
+        "fail-on-coverage-drop": true,
+        "description": "Verify test coverage doesn't drop"
+      },
+      "memory-store-commit": {
+        "condition": "tool === 'Bash' && command.includes('git commit')",
+        "action": "store-memory",
+        "memory": {
+          "key": "commit-{hash}",
+          "value": "{commit-message}",
+          "namespace": "commits",
+          "ttl": 2592000,
+          "tags": ["git", "tracking"]
+        },
+        "async": true,
+        "description": "Auto-index commits to memory system"
+      },
+      "memory-sync-agents": {
+        "condition": "agent-task-completed",
+        "action": "sync-memory",
+        "target": "all-agents",
+        "namespace": "coordination",
+        "async": true,
+        "description": "Sync memory across agents after task completion"
+      },
+      "checkpoint-after-major-changes": {
+        "condition": "files-changed > 5 OR lines-changed > 500",
+        "action": "create-checkpoint",
+        "compress": true,
+        "async": true,
+        "description": "Create checkpoint after major changes"
+      }
+    },
+    "Stop": {
+      "final-security-scan": {
+        "action": "bash",
+        "command": "claude-flow security scan --summary",
+        "fail-on-error": true,
+        "description": "Final security check before session end"
+      },
+      "memory-final-sync": {
+        "action": "memory-sync",
+        "namespace": "coordination",
+        "compress": true,
+        "description": "Final memory sync and compression"
+      },
+      "hive-mind-checkpoint": {
+        "action": "bash",
+        "command": "claude-flow hive-mind checkpoint --compress",
+        "async": false,
+        "description": "Save hive-mind state on session end"
+      }
+    }
+  },
+  "workers": {
+    "auto-linter": {
+      "command": "npm run lint -- --fix",
+      "interval": 300000,
+      "enabled": true
+    },
+    "security-scanner": {
+      "command": "claude-flow security scan",
+      "interval": 600000,
+      "enabled": true
+    },
+    "memory-optimizer": {
+      "command": "claude-flow memory gc --compress",
+      "interval": 1800000,
+      "enabled": true
+    },
+    "hive-health-check": {
+      "command": "claude-flow hive-mind status --metrics",
+      "interval": 300000,
+      "enabled": true,
+      "fail-on-agent-down": true
+    }
+  },
+  "error-handling": {
+    "on-hook-failure": "log-and-continue",
+    "on-security-failure": "block-and-alert",
+    "on-memory-failure": "log-only",
+    "retry-policy": {
+      "max-retries": 3,
+      "backoff-ms": 1000
+    }
+  },
+  "performance": {
+    "max-hook-timeout": 300000,
+    "async-by-default": false,
+    "parallel-hooks": true,
+    "hook-context-limit": "20MB"
+  }
+}
