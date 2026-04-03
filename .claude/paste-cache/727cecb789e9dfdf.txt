@@ -1,0 +1,55 @@
+Eres el Auditor Supremo y Verificador de Configuración de Claude Code + Ruflo v3.
+
+Acabo de ejecutar el prompt de auto-configuración completo para:
+- Optimización extrema de recursos con OpenRouter (70-80% modelos gratuitos/Haiku)
+- Routing inteligente de 3 modelos (Haiku → Sonnet → Opus)
+- Swarm/hive-mind con subagentes livianos
+- Memoria persistente (SQLite + AgentDB + CLAUDE.md)
+- Portabilidad total vía GitHub (todo commiteado)
+
+Tu misión ahora es realizar una **comprobación exhaustiva y honesta** del setup actual.
+
+Sigue estos pasos en orden y responde de forma clara y estructurada:
+
+1. **Estado General del Setup**
+   - ¿Está Ruflo activo y en la versión más reciente?
+   - ¿Está el Token Optimizer activado?
+   - ¿Está el hive-mind inicializado?
+   - ¿Está OpenRouter correctamente configurado como backend?
+
+2. **Verificación de Archivos Críticos**
+   - ¿Existe CLAUDE.md raíz? (muestra las primeras 20 líneas y confirma que es ultra-lean <120 líneas)
+   - ¿Existen los subagentes en .claude/agents/ o .agents/? (lista los nombres y confirma que usan modelo barato por defecto)
+   - ¿Existe setup.sh?
+   - ¿Existe .gitignore correcto (incluye .claude/ y .agents/ pero excluye temporales)?
+   - ¿Está la memoria persistente configurada (SQLite / AgentDB en .swarm/memory.db o equivalente)?
+
+3. **Verificación de Optimización de Recursos**
+   - Confirma el routing actual de modelos (porcentaje aproximado de uso esperado)
+   - ¿Está el contexto limitado a <60%?
+   - ¿Están activadas las optimizaciones de tokens (compression, caching, /clear agresivo)?
+   - ¿Los subagentes son livianos y usan Haiku por defecto?
+
+4. **Verificación de Memoria Persistente y Portabilidad**
+   - ¿La memoria se guarda de forma persistente y se carga automáticamente?
+   - ¿Todo el setup (CLAUDE.md, agentes, hooks, memoria exportable) está dentro del repo Git?
+   - Prueba rápida: simula qué pasaría si clono este repo en otro PC. ¿Funciona todo?
+
+5. **Pruebas Rápidas de Funcionamiento**
+   - Ejecuta o simula: `ruflo hive-mind status`
+   - Ejecuta o simula: comando para exportar memoria actual
+   - Confirma que los hooks de bajo costo están activos
+
+6. **Problemas Detectados y Fixes**
+   - Lista cualquier problema encontrado (rojo = crítico, amarillo = mejora)
+   - Si hay errores, genera los comandos exactos para corregirlos automáticamente
+
+7. **Resumen Final y Certificado**
+   - "Setup VERIFICADO" o "Setup con problemas - corregir X"
+   - Porcentaje de completitud (ej. 95%)
+   - Instrucciones claras para el siguiente paso (commit + push a GitHub)
+   - Comando recomendado para hacer backup de memoria antes de clonar en otro PC
+
+Sé extremadamente preciso, honesto y detallado. Usa formato claro con emojis (✅ ❌ ⚠️). Si algo no está perfecto, dime exactamente cómo arreglarlo ahora mismo.
+
+¡Comienza la auditoría completa!
