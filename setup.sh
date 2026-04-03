@@ -57,9 +57,21 @@ fi
 echo ""
 
 # ────────────────────────────────────────────────────────────────
-# STEP 4: Initialize Hive-Mind + Token Optimizer
+# STEP 4: Setup OpenRouter API Key (if not already set)
 # ────────────────────────────────────────────────────────────────
-echo "🧠 [4/6] Initializing Hive-Mind + Token Optimizer..."
+if [ -z "$OPENROUTER_API_KEY" ]; then
+    echo "🔑 [4a/6] OpenRouter API key not set. Check GitHub Secrets or local .env"
+    echo "  To set locally: export OPENROUTER_API_KEY='sk-or-v1-...'"
+    echo "  GitHub Actions will auto-inject from Secrets"
+else
+    echo "✓ OpenRouter API key detected (length: ${#OPENROUTER_API_KEY})"
+fi
+echo ""
+
+# ────────────────────────────────────────────────────────────────
+# STEP 4b: Initialize Hive-Mind + Token Optimizer
+# ────────────────────────────────────────────────────────────────
+echo "🧠 [4b/6] Initializing Hive-Mind + Token Optimizer..."
 claude-flow daemon start --log-level=info --detach 2>/dev/null || true
 sleep 2
 
